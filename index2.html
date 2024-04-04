@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Income Tax Calculator</h1>
+        <div class="form-group">
+            <label for="income">Annual Income (₹)</label>
+            <input type="number" id="income" min="0" step="any" placeholder="Enter your annual income" required>
+        </div>
+        <div class="form-group">
+            <button onclick="calculateTax()">Calculate Tax</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateTax() {
+            var income = document.getElementById("income").value;
+            var tax = 0;
+
+            if (income > 500000 && income <= 1000000) {
+                tax = (income - 500000) * 0.2;
+            } else if (income > 1000000 && income <= 1500000) {
+                tax = 100000 + (income - 1000000) * 0.3;
+            } else if (income > 1500000) {
+                tax = 220000 + (income - 1500000) * 0.35;
+            }
+
+            document.getElementById("result").innerText = "Income Tax: ₹" + tax.toFixed(2);
+        }
+    </script>
+</body>
+</html>
